@@ -1,4 +1,8 @@
-@import '../../../styles/settings.scss';
+@import '../../../styles/global.scss';
 
-// .root {
-// }
+.mainLayoutContainer {
+  margin: 0;
+  padding: 0;
+  // border: 1px solid $color-white;
+}
+

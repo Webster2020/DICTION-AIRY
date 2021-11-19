@@ -1,23 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
-
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './MainLayout.module.scss';
+import styles from './MainWrapper.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.mainLayoutContainer)}>
-    <h2>MainLayout</h2>
-    {children}
-  </div>
+const Component = ({children}) => (
+  <section className={styles.mw}>{children}</section>
 );
 
 Component.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
 };
 
 // const mapStateToProps = state => ({
@@ -31,7 +25,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as MainLayout,
-  // Container as MainLayout,
-  Component as MainLayoutComponent,
+  Component as MainWrapper,
+  // Container as MainWrapper,
+  Component as MainWrapperComponent,
 };

@@ -1,0 +1,36 @@
+@import '../../../styles/global.scss';
+
+.headerContainer {
+  margin: 0 0 $base-size * 5;
+  padding: 0;
+}
+
+.headerText {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  font-family: $font-brand;
+  font-size: 21vw;
+  line-height: 0.7;
+  opacity: 0.8;
+}
+
+@media (min-width: 1200px) {
+  .headerText {
+    font-size: $base-size * 25;
+    // border: 1px solid $color-black;
+  }
+}
+
+
+// @media (max-width: 1200px) {
+// }
+
+// @media (max-width: 992px) {
+// }
+
+// @media (max-width: 768px) {
+// }
+
+// @media (max-width: 576px) {
+// }

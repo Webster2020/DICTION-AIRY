@@ -1,0 +1,25 @@
+@import '../../../styles/global.scss';
+
+.tw {
+  margin: $base-size * 2;
+  padding: 0;
+  border: 5px solid $color-white;
+  border-radius: $radius;
+  background-color: $color-white;
+  opacity: 0.8;
+}
+
+@media (min-width: 1200px) {
+  .tw {
+    margin: $base-size * 2 0;
+  }
+}
+
+// @media (max-width: 992px) {
+// }
+
+// @media (max-width: 768px) {
+// }
+
+// @media (max-width: 576px) {
+// }

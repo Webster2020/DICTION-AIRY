@@ -6,11 +6,11 @@ import clsx from 'clsx';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './MainLayout.module.scss';
+import styles from './MainButtons.module.scss';
 
 const Component = ({className, children}) => (
-  <div className={clsx(className, styles.mainLayoutContainer)}>
-    <h2>MainLayout</h2>
+  <div className={clsx(className, styles.root)}>
+    <h2>MainButtons</h2>
     {children}
   </div>
 );
@@ -31,7 +31,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as MainLayout,
-  // Container as MainLayout,
-  Component as MainLayoutComponent,
+  Component as MainButtons,
+  // Container as MainButtons,
+  Component as MainButtonsComponent,
 };

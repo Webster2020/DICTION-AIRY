@@ -1,24 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
+// import PropTypes from 'prop-types';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './Home.module.scss';
+// import styles from './Home.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>Home</h2>
-    {children}
-  </div>
+import { Link } from 'react-router-dom';
+
+import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
+import { MainButtons } from '../../features/MainButtons/MainButtons';
+import { Button } from '../../common/Button/Button';
+
+const Component = () => (
+  <MainWrapper>
+    <MainButtons>
+      <Button main='true' variant='home'>
+        <Link to={'/main'} style={{ textDecoration: 'none' }}>
+          <h2>TRY FREE</h2>
+        </Link>
+      </Button>
+      <Button main='true'>
+        <h2>LOGIN</h2>
+      </Button>
+    </MainButtons>
+  </MainWrapper>
 );
 
-Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-};
+// Component.propTypes = {
+// };
 
 // const mapStateToProps = state => ({
 //   someProp: reduxSelector(state),

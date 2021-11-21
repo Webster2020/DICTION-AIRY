@@ -1,0 +1,51 @@
+@import "../../../styles/settings.scss";
+
+.default {
+  display: block;
+  margin: $base-size auto;
+  padding: $base-size * 3;
+  min-width: 250px; 
+  background-color: $color-light;
+  border-radius: $radius * 2;
+  text-decoration: none;
+  text-align: center;
+  opacity: 0.8;
+  transition: $transition-fast;
+  h2 {
+    font-family: $font-brand;
+    font-size: $base-size * 3.5;
+    color: $color-main-three;
+    line-height: 0.5;
+  }
+  &:hover {
+    color: $color-main-four;
+    opacity: 1;
+    cursor: pointer;
+    transition: $transition-fast;
+  }
+}
+
+.home {
+  @extend .default;
+  color: $color-main-three;
+  &:hover {
+    color: $color-main-four;
+  }
+}
+
+.word {
+  @extend .default;
+  display: block;
+}
+
+// @media (max-width: 1200px) {
+// }
+
+// @media (max-width: 992px) {
+// }
+
+// @media (max-width: 768px) {
+// }
+
+// @media (max-width: 576px) {
+// }

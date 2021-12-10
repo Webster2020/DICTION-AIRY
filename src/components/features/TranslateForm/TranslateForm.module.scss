@@ -1,0 +1,49 @@
+@import '../../../styles/global.scss';
+
+.tf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: $base-size 0 0;
+  padding: 0;
+  // border: 1px solid green;
+  border-top: 3px solid $color-dark;
+}
+
+.tfRowCol {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.tfRowRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  & * {
+    width: 49%;
+  }
+}
+
+@media (min-width: 768px) {
+  .tf {
+    margin: $base-size * 2 0;
+    // flex-direction: row;
+    justify-content: center; //dont work
+  }
+}
+
+@media (min-width: 1200px) {
+  .tf {
+    margin: $base-size * 2 0;
+  }
+}
+
+// @media (max-width: 992px) {
+// }
+
+// @media (max-width: 768px) {
+// }
+
+// @media (max-width: 576px) {
+// }

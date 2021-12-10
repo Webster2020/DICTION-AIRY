@@ -1,38 +1,68 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { convTextToButtons } from '../../../utils/convTextToButtons';
 
-// import styles from './Main.module.scss';
-
+import { Button } from '../../common/Button/Button';
+import { MainButtons } from '../../features/MainButtons/MainButtons';
 import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
 import { TextArea } from '../../features/TextArea/TextArea';
+import { TextConverted } from '../../features/TextConverted/TextConverted';
 import { TextWrapper } from '../../features/TextWrapper/TextWrapper';
 
-const Component = () => (
-  <MainWrapper>
-    <TextWrapper>
-      <TextArea></TextArea>
-    </TextWrapper>
-  </MainWrapper>
-);
+const Component = () => {
 
-// Component.propTypes = {
-// };
+  const [text, setText] = useState('');
+  const [words, setWords] = useState(['dupa', 'dupa2', ',']);
+  const [converted, setConverted] = useState(false);
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+  const handleChangeText = (e) => {
+    setText(e.target.value);
+  };
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+  const handleConvertion = (e) => {
+    e.preventDefault();
+    setWords(convTextToButtons(text));
+    setConverted(true);
+  };
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+  const handleClear = (e) => {
+    e.preventDefault();
+    setText('');
+    setConverted(false);
+  };
+
+  return (
+    <MainWrapper>
+      <TextWrapper>
+        {!converted && (
+          <TextArea
+            value={text}
+            handleChangeText={(e) => handleChangeText(e)}
+          ></TextArea>
+        )}
+        {converted && <TextConverted words={words} />}
+      </TextWrapper>
+      <MainButtons>
+        {!converted && (
+          <Button
+            main='true'
+            variant='home'
+            onClick={(e) => handleConvertion(e)}
+          >
+            <h2>CONVERT</h2>
+          </Button>
+        )}
+        {converted && (
+          <Button main='true' variant='home' onClick={(e) => handleClear(e)}>
+            <h2>CLEAR</h2>
+          </Button>
+        )}
+      </MainButtons>
+    </MainWrapper>
+  );
+};
 
 export {
   Component as Main,
-  // Container as Main,
   Component as MainComponent,
 };

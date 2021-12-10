@@ -1,23 +1,33 @@
 @import '../../../styles/global.scss';
 
-.mb {
+.lf {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: $base-size * 2;
   padding: 0;
-  // border: 1px solid red;
+  // border: 2px solid green;
+}
+
+.lfRow {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
-  .mb {
+  .lf {
     margin: $base-size * 2 0;
+    // flex-direction: row;
+    justify-content: center; //dont work
+  }
+  .lfRow {
     flex-direction: row;
   }
 }
 
 @media (min-width: 1200px) {
-  .mb {
+  .lf {
     margin: $base-size * 2 0;
   }
 }

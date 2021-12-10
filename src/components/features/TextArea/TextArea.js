@@ -1,35 +1,26 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
+import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import styles from './TextArea.module.scss';
 
-const Component = () => (
+const Component = ({text, handleChangeText}) => (
   <div className={styles.textAreaContainer}>
-    {/* <textarea className={"textArea"} maxLength="2000" rows="52" /> */}
-    <TextareaAutosize className={styles.textArea} autoFocus />
+    <TextareaAutosize
+      className={styles.textArea}
+      autoFocus
+      value={text}
+      onChange={handleChangeText}
+    />
   </div>
 );
 
-// Component.propTypes = {
-// };
-
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+Component.propTypes = {
+  text: PropTypes.string,
+  handleChangeText: PropTypes.func,
+};
 
 export {
   Component as TextArea,
-  // Container as TextArea,
   Component as TextAreaComponent,
 };

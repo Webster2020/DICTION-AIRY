@@ -1,47 +1,40 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
-// import styles from './Home.module.scss';
-
+import React, { useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
-import { MainButtons } from '../../features/MainButtons/MainButtons';
 import { Button } from '../../common/Button/Button';
+import { LoginForm } from '../../features/LoginForm/LoginForm';
+import { MainButtons } from '../../features/MainButtons/MainButtons';
+import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
 
-const Component = () => (
-  <MainWrapper>
-    <MainButtons>
-      <Button main='true' variant='home'>
-        <Link to={'/main'} style={{ textDecoration: 'none' }}>
-          <h2>TRY FREE</h2>
-        </Link>
-      </Button>
-      <Button main='true'>
-        <h2>LOGIN</h2>
-      </Button>
-    </MainButtons>
-  </MainWrapper>
-);
+const Component = () => {
 
-// Component.propTypes = {
-// };
+  const [loginVisible, setLoginVisible] = useState(false);
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+  const handler = () => {
+    setLoginVisible(!loginVisible);
+  };
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+  return (
+    <MainWrapper>
+      <MainButtons>
+        <Button main='true' variant='home'>
+          <BrowserRouter>
+            <Link to={'/main'} style={{ textDecoration: 'none' }}>
+              <h2>TRY FREE</h2>
+            </Link>
+          </BrowserRouter>
+        </Button>
+        <Button main='true' variant='home' onClick={handler}>
+          <h2>LOGIN</h2>
+        </Button>
+      </MainButtons>
+      {loginVisible && <LoginForm />}
+    </MainWrapper>
+  );
+};
 
 export {
   Component as Home,
-  // Container as Home,
   Component as HomeComponent,
 };

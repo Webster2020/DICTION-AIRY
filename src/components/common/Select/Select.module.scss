@@ -1,0 +1,32 @@
+@import "../../../styles/settings.scss";
+
+.select {
+  display: block;
+  margin: $base-size * 1 0;
+  padding: 0;
+  background-color: $color-light;
+  border: 3px solid transparent;
+  border-radius: $radius * 2;
+  outline: none;
+  background-color: $color-light;
+  text-decoration: none;
+  text-align: center;
+  font-family: $font-brand;
+  font-size: $base-size * 2.5;
+  color: $color-dark;
+  opacity: 0.8;
+  transition: $transition-fast;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+    transition: $transition-fast;
+  }
+  &:focus {
+    border: 3px solid $color-main-three;
+    opacity: 1;
+  }
+  &::placeholder {
+    color: $color-dark;
+    opacity: 0.3;
+  }
+}

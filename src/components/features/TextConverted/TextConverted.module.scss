@@ -1,6 +1,7 @@
 @import '../../../styles/global.scss';
 
-.textArea {
+.textConverted {
+  position: relative;
   margin: 0;
   padding: $base-size;
   width: 100%;
@@ -10,10 +11,17 @@
   font-family: $font-text;
   font-size: $base-size * 2;
   font-weight: 600;
+  color: $color-black;
+  z-index: 1000;
   &:focus {
     border: none;
     outline: none;
   }
+}
+
+.textConvertedWord {
+  // position: relative;
+  display: inline;
 }
 
 // @media (max-width: 1200px) {

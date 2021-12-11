@@ -37,6 +37,7 @@ const Component = () => {
         {!converted && (
           <TextArea
             value={text}
+            id='textarea'
             handleChangeText={(e) => handleChangeText(e)}
           ></TextArea>
         )}
@@ -47,13 +48,19 @@ const Component = () => {
           <Button
             main='true'
             variant='home'
+            id='convert'
             onClick={(e) => handleConvertion(e)}
           >
             <h2>CONVERT</h2>
           </Button>
         )}
         {converted && (
-          <Button main='true' variant='home' onClick={(e) => handleClear(e)}>
+          <Button 
+            main='true' 
+            variant='home'
+            id='clear' 
+            onClick={(e) => handleClear(e)}
+          >
             <h2>CLEAR</h2>
           </Button>
         )}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { Button } from '../../common/Button/Button';
@@ -10,22 +10,25 @@ import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
 const Component = () => {
 
   const [loginVisible, setLoginVisible] = useState(false);
+  const [counter, setCounter] = useState(0);
 
   const handler = () => {
     setLoginVisible(!loginVisible);
+    setCounter(counter + 1);
   };
 
   return (
     <MainWrapper>
       <MainButtons>
-        <Button main='true' variant='home'>
-          <BrowserRouter>
-            <Link to={'/main'} style={{ textDecoration: 'none' }}>
-              <h2>TRY FREE</h2>
-            </Link>
-          </BrowserRouter>
+        <h1>{counter}</h1>
+        <Button main='true' id={'tryfree'} variant='home'>
+          {/* <BrowserRouter> */}
+          <Link to={'/main'} id={'main'} style={{ textDecoration: 'none' }}>
+            <h2>TRY FREE</h2>
+          </Link>
+          {/* </BrowserRouter> */}
         </Button>
-        <Button main='true' variant='home' onClick={handler}>
+        <Button main='true' id={'login'} variant='home' onClick={handler}>
           <h2>LOGIN</h2>
         </Button>
       </MainButtons>

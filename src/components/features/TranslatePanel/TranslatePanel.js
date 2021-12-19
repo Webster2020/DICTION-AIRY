@@ -7,25 +7,24 @@ import { Button } from '../../common/Button/Button';
 import { TranslateForm } from '../TranslateForm/TranslateForm';
 
 const Component = ({word, closePanel}) => {
+
   const clickClose = (e) => {
     e.preventDefault();
-    console.log('close');
     closePanel();
   };
 
   return (
     <div className={styles.tp}>
-      <Button variant='x' onClick={(e) => clickClose(e)}>
-        x
-      </Button>
+      <Button variant='x' id='x' onClick={(e) => clickClose(e)}>x</Button>
       <h2 className={styles.tpWord}>{word.toUpperCase()}</h2>
       <TranslateForm />
     </div>
   );
+
 };
 
 Component.propTypes = {
-  word: PropTypes.string,
+  word: PropTypes.string.isRequired,
   closePanel: PropTypes.func,
 };
 

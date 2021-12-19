@@ -17,8 +17,12 @@ describe('Component Main', () => {
     expect(() => shallow(<MainComponent name={'sth'} />)).not.toThrow();
   });
 
-  it('3) should render Button convert', () => {
+  it('3a) should render Button convert', () => {
     expect(component.exists('#convert')).toEqual(true);
+  });
+
+  it('3b) should render Button convert 2', () => {
+    expect(component.find('#convert').length).toBe(1);
   });
 
   it('4) should render Button clear', () => {

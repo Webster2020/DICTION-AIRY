@@ -10,12 +10,10 @@ describe('Component Header', () => {
   });
 
   it('should render without crashing', () => {
-    // const component = shallow(<HeaderComponent />);
     expect(component).toBeTruthy();
   });
 
-  it('should render correct title', () => {
-    // const component = shallow(<HeaderComponent />);
+  it('should render correct text', () => {
     expect(component.find('h1').text()).toContain('DICTIONAIRY');
     console.log(component.debug());
   });
@@ -25,6 +23,3 @@ describe('Component Header', () => {
   });
 
 });
-
-
-//67042304222 16.12 19:30

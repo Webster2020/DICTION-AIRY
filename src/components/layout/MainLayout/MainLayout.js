@@ -3,17 +3,9 @@ import PropTypes from 'prop-types';
 
 import styles from './MainLayout.module.scss';
 
-const Component = ({children}) => {
-  return (
-    <main className={styles.mainLayoutContainer}>
-      {children}
-    </main>
-  );
-};
-
-Component.defaultProps = {
-  children: '',
-};
+const Component = ({children}) => (
+  <main className={styles.mainLayoutContainer}>{children}</main>
+);
 
 Component.propTypes = {
   children: PropTypes.node,

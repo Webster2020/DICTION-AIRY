@@ -22,7 +22,7 @@ const Component = ({ type, options, handleChangeValue }) => {
 
 Component.propTypes = {
   type: PropTypes.string,
-  options: PropTypes.array,
+  options: PropTypes.array.isRequired,
   handleChangeValue: PropTypes.func,
 };
 

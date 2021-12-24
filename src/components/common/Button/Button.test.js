@@ -1,11 +1,8 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 
 import { findByTestAttr } from '../../../utils/testUtils';
 import { ButtonComponent } from './Button';
-
-Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 const setup = (props={}) => {
   return shallow(<ButtonComponent {...props} />);
@@ -50,6 +47,14 @@ describe('Component Button', () => {
     expect(element.hasClass('default')).toEqual(true);
 
     console.log('Component Button: 5) should render button without any props with class "default"', '\n\n', component.debug());
+  });
+
+  test('6) should render button with prop "variant=word" with class "word"', () => {
+    const component = setup({variant: 'word'});
+    const element = findByTestAttr(component, 'a');
+    expect(element.hasClass('word')).toEqual(true);
+
+    console.log('Component Button: 6) should render button with prop "variant=word" with class "word"', '\n\n', component.debug());
   });
 
 });

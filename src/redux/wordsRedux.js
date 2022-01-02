@@ -1,23 +1,80 @@
-/* selectors */
-export const getAll = ({words}) => words.data;
+import axios from 'axios';
 
-/* action name creator */
-const reducerName = 'words';
-const createActionName = name => `app/${reducerName}/${name}`;
+// --- S E L E C T O R S --- //
+export const getAll = ({ words }) => words.data;
+export const getAllByUser = ({ words, user }) =>
+  words.data.filter((word) => word.user === user.data);
+export const getLiked = ({ words }) => words.data.filter((word) => word.like);
+export const getFetchStatus = ({ words }) => words.loading.active;
 
-/* action types */
-const FETCH_START = createActionName('FETCH_START');
-const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
-const FETCH_ERROR = createActionName('FETCH_ERROR');
+// --- A C T I O N   N A M E   C R E A T O R --- //
+const caName = (name) => `app/word/${name}`;
 
-/* action creators */
-export const fetchStarted = payload => ({ payload, type: FETCH_START });
-export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
-export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+// --- A C T I O N   T Y P E S --- //
+const FETCH_START = caName('FETCH_START');
+const FETCH_SUCCESS = caName('FETCH_SUCCESS');
+const FETCH_ERROR = caName('FETCH_ERROR');
+const WORD_ADD = caName('WORD_ADD');
+const WORD_LIKE = caName('WORD_LIKE');
+const WORD_UNLIKE = caName('WORD_UNLIKE');
 
-/* thunk creators */
+// --- A C T I O N   C R E A T O R S --- //
+export const caFetchStarted = (payload) => ({ payload, type: FETCH_START });
+export const caFetchSuccess = (payload) => ({ payload, type: FETCH_SUCCESS });
+export const caFetchError = (payload) => ({ payload, type: FETCH_ERROR });
+export const caWordLike = (payload) => ({ payload, type: WORD_LIKE });
+export const caWordUnlike = (payload) => ({ payload, type: WORD_UNLIKE });
+export const caWordAdd = (payload) => ({ payload, type: WORD_ADD });
 
-/* reducer */
+// --- T H U N K   C R E A T O R S --- //
+export const caFetchWords = (words, refetch, activeFetch) => {
+  return (dispatch, getState) => {
+    dispatch(caFetchStarted());
+    if (!refetch) {
+      if (words.length < 1 && !activeFetch) {
+        console.log('first fetch');
+        axios
+          // .get('http://dictionairy.webster2020.usermd.net/api/words/all')
+          .get('http://localhost:8000/api/words/all')
+          .then((res) => {
+            dispatch(caFetchSuccess(res.data));
+          })
+          .catch((err) => {
+            dispatch(caFetchError(err.message || true));
+          });
+      }
+    } else {
+      console.log('refetch');
+      axios
+        // .get('http://dictionairy.webster2020.usermd.net/api/words/all')
+        .get('http://localhost:8000/api/words/all')
+        .then((res) => {
+          console.log(res.data);
+          dispatch(caFetchSuccess(res.data));
+        })
+        .catch((err) => {
+          dispatch(caFetchError(err.message || true));
+        });
+    }
+  };
+};
+
+export const caAddWordToDB = (newWord) => {
+  return (dispatch, getState) => {
+    axios
+      // .post(`http://dictionairy.webster2020.usermd.net/api/words/add`, newWord)
+      .post(`http://localhost:8000/api/words/add`, newWord)
+      .then((res) => {
+        console.log(newWord);
+        dispatch(caWordAdd(newWord));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+// --- R E D U C E R --- //
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {
     case FETCH_START: {
@@ -46,6 +103,34 @@ export const reducer = (statePart = [], action = {}) => {
           active: false,
           error: action.payload,
         },
+      };
+    }
+    case WORD_ADD: {
+      console.log('ACTION PAYLOAD:');
+      console.log(action.payload);
+      return {
+        ...statePart,
+        data: [...statePart.data, action.payload],
+        loading: {
+          active: false,
+          error: false,
+        },
+      };
+    }
+    case WORD_LIKE: {
+      return {
+        ...statePart,
+        data: statePart.data.map((word) =>
+          word._id === action.payload ? { ...word, like: true } : word
+        ),
+      };
+    }
+    case WORD_UNLIKE: {
+      return {
+        ...statePart,
+        data: statePart.data.map((word) =>
+          word._id === action.payload ? { ...word, like: false } : word
+        ),
       };
     }
     default:

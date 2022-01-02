@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { initialState } from './initialState';
+import { reducer as userReducer } from './userRedux';
 import { reducer as wordsReducer } from './wordsRedux';
 
 // define reducers
 const reducers = {
+  user: userReducer,
   words: wordsReducer,
 };
 

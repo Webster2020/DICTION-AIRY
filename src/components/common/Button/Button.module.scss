@@ -70,6 +70,54 @@
   opacity: 1;
 }
 
+.dictionary {
+  @extend .default;
+  background-color: $color-dark;
+  h2 {
+    color: $color-dark;
+  }
+  h3 {
+    font-family: $font-brand;
+    font-size: $base-size * 2.5;
+    color: $color-light;
+    line-height: 1;
+  }
+}
+
+.level {
+  @extend .default;
+  margin: $base-size * 0.5;
+  padding: $base-size * 1.5;
+  min-width: 50px; 
+  background-color: $color-light;
+  h3 {
+    color: $color-dark;
+  }
+}
+
+.level0 {
+  background-color: $color-lvl-0;
+  border: 2px solid $color-lvl-0;
+}
+
+.level1 {
+  background-color: $color-lvl-1;
+  border: 2px solid $color-lvl-1;
+}
+
+.level2 {
+  background-color: $color-lvl-2;
+  border: 2px solid $color-lvl-2;
+}
+
+.like {
+  @extend .default;
+  margin: 0;
+  padding: 0;
+  background-color: inherit;
+}
+
+
 @media (min-width: 768px) {
   .home {
     margin: $base-size * 2;

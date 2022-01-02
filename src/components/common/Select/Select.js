@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './Select.module.scss';
 
-const Component = ({ type, options, handleChangeValue }) => {
+const Component = ({ options, val, handleChangeValue }) => {
+  useEffect(() => {
+    console.log('USE EFFECT SELECT');
+    console.log('options: ' + options);
+    console.log('value: ' + val);
+  });
 
   const handleSelect = (e) => {
-    handleChangeValue(options[e.target.value]);
+    handleChangeValue(e.target.value);
   };
 
   return (
-    <select className={styles.select} onChange={(e) => handleSelect(e)}>
+    <select className={styles.select} value={val} onChange={(e) => handleSelect(e)}>
       {options.map((option, index) => (
-        <option key={index} value={index}>
+        <option key={index} value={option}>
           {option}
         </option>
       ))}
@@ -21,8 +26,8 @@ const Component = ({ type, options, handleChangeValue }) => {
 };
 
 Component.propTypes = {
-  type: PropTypes.string,
-  options: PropTypes.array.isRequired,
+  options: PropTypes.array,
+  val: PropTypes.string,
   handleChangeValue: PropTypes.func,
 };
 

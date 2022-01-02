@@ -14,16 +14,19 @@ const Component = ({ word }) => {
       icon: <BiDislike />,
       level: 0,
       style: styles.wDictionary0,
+      styleLevel: styles.level0,
     },
     {
       icon: <BiInfoCircle />,
       level: 1,
       style: styles.wDictionary1,
+      styleLevel: styles.level1,
     },
     {
       icon: <BiLike />,
       level: 2,
       style: styles.wDictionary2,
+      styleLevel: styles.level2,
     },
   ];
 
@@ -62,7 +65,7 @@ const Component = ({ word }) => {
               <div className={styles.wDataLevel} key={shortid.generate()}>
                 <Button
                   variant={'level'}
-                  className={`${styles.level}${btn.level} ${
+                  className={`${buttonsData[btn.level].styleLevel} ${
                     level === btn.level && styles.wDataLevelSelected
                   }`}
                   onClick={(e) => {

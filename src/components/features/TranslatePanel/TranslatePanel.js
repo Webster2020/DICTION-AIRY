@@ -17,7 +17,7 @@ const Component = ({word, closePanel}) => {
     <div className={styles.tp}>
       <Button variant='x' id='x' onClick={(e) => clickClose(e)}>x</Button>
       <h2 className={styles.tpWord}>{word.toUpperCase()}</h2>
-      <TranslateForm />
+      <TranslateForm word={word} close={closePanel} />
     </div>
   );
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './MainButtons.module.scss';
 
 const Component = ({children}) => (
-  <section className={styles.mb}>{children}</section>
+  <article className={styles.mb}>{children}</article>
 );
 
 Component.propTypes = {

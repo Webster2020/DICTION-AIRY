@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAll, getAllByUser } from '../../../redux/wordsRedux.js';
 
-import { WordsList } from '../../features/WordsList/WordsList';
+import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
 import { Word } from '../../features/Word/Word';
-import MainWrapper from '../../layout/MainWrapper/MainWrapper';
+import { WordsList } from '../../features/WordsList/WordsList';
 
 // import styles from './Words.scss';
 

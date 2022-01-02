@@ -13,14 +13,17 @@ const Component = ({ word }) => {
     {
       icon: <BiDislike />,
       level: 0,
+      style: styles.wDictionary0,
     },
     {
       icon: <BiInfoCircle />,
       level: 1,
+      style: styles.wDictionary1,
     },
     {
       icon: <BiLike />,
       level: 2,
+      style: styles.wDictionary2,
     },
   ];
 
@@ -38,13 +41,13 @@ const Component = ({ word }) => {
     <li className={styles.w}>
       <Button
         variant={'dictionary'}
-        className={`wDictionary wDictionary${level}`}
+        className={`${styles.wDictionary} ${buttonsData[level].style}`}
         onClick={() => setVisible(!visible)}
       >
         <h2>{word.word}</h2>
       </Button>
       {like && (
-        <div className={'wHeart'}>
+        <div className={styles.wHeart}>
           <h2>
             <BsHeartFill />
           </h2>
@@ -59,8 +62,8 @@ const Component = ({ word }) => {
               <div className={styles.wDataLevel} key={shortid.generate()}>
                 <Button
                   variant={'level'}
-                  className={`level${btn.level} ${
-                    level === btn.level && 'wDataLevelSelected'
+                  className={`${styles.level}${btn.level} ${
+                    level === btn.level && styles.wDataLevelSelected
                   }`}
                   onClick={(e) => {
                     e.preventDefault();

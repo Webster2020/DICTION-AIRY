@@ -20,7 +20,7 @@
 }
 
 .wDictionary0 {
-  background-color: $color-lvl-0;
+  background-color: $color-lvl-0 !important;
 }
 
 .wDictionary1 {
@@ -99,4 +99,19 @@
     font-size: $base-size * 5;
     line-height: 0;
   }
+}
+
+.level0 {
+  background-color: $color-lvl-0;
+  border: 2px solid $color-lvl-0;
+}
+
+.level1 {
+  background-color: $color-lvl-1;
+  border: 2px solid $color-lvl-1;
+}
+
+.level2 {
+  background-color: $color-lvl-2;
+  border: 2px solid $color-lvl-2;
 }

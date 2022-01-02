@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 
 import { convTextToButtons } from '../../../utils/convTextToButtons';
 
+// import styles from './Main.module.scss';
+
+import { Link } from 'react-router-dom';
+
 import { Button } from '../../common/Button/Button';
 import { MainButtons } from '../../features/MainButtons/MainButtons';
 import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
@@ -64,6 +68,11 @@ const Component = () => {
             <h2>CLEAR</h2>
           </Button>
         )}
+        <Button main='true' variant='home' onClick={(e) => handleClear(e)}>
+          <Link to={'/words'} style={{ textDecoration: 'none' }}>
+            <h2>MY WORDS</h2>
+          </Link>
+        </Button>
       </MainButtons>
     </MainWrapper>
   );

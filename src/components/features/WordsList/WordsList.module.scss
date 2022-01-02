@@ -1,0 +1,12 @@
+@import '../../../styles/global.scss';
+
+.wl {
+  margin: 0 auto;
+  padding: $base-size * 2;
+}
+
+.wlList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

@@ -22,11 +22,9 @@ const Component = () => {
       <MainButtons>
         <h1>{counter}</h1>
         <Button main='true' id={'tryfree'} variant='home'>
-          {/* <BrowserRouter> */}
           <Link to={'/main'} id={'main'} style={{ textDecoration: 'none' }}>
             <h2>TRY FREE</h2>
           </Link>
-          {/* </BrowserRouter> */}
         </Button>
         <Button main='true' id={'login'} variant='home' onClick={handler}>
           <h2>LOGIN</h2>

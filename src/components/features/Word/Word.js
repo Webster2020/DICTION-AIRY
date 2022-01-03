@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
+import { connect } from 'react-redux';
+import { caWordLike, caWordLevel } from '../../../redux/wordsRedux.js';
+
 import styles from './Word.module.scss';
 
 import { Button } from '../../common/Button/Button';
 import { BiLike, BiDislike, BiInfoCircle } from 'react-icons/bi';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 
-const Component = ({ word }) => {
+const Component = ({ word, wordLikeDispatch, wordLevelDispatch }) => {
   const buttonsData = [
     {
       icon: <BiDislike />,
@@ -34,22 +37,22 @@ const Component = ({ word }) => {
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   // level will come from word.level (it will be changing by dispatch action during click on level buttons)
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  const [level, setLevel] = useState(0); //this line to remove in future
+  // const [level, setLevel] = useState(0); //this line to remove in future
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   // like will come from word.like (it will be changing by dispatch action during click on heart button)
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  const [like, setLike] = useState(false); //this line to remove in future
+  // const [like, setLike] = useState(false); //this line to remove in future
 
   return (
     <li className={styles.w}>
       <Button
         variant={'dictionary'}
-        className={`${styles.wDictionary} ${buttonsData[level].style}`}
+        className={`${styles.wDictionary} ${buttonsData[word.level].style}`}
         onClick={() => setVisible(!visible)}
       >
         <h2>{word.word}</h2>
       </Button>
-      {like && (
+      {word.like && (
         <div className={styles.wHeart}>
           <h2>
             <BsHeartFill />
@@ -66,11 +69,12 @@ const Component = ({ word }) => {
                 <Button
                   variant={'level'}
                   className={`${buttonsData[btn.level].styleLevel} ${
-                    level === btn.level && styles.wDataLevelSelected
+                    word.level === btn.level && styles.wDataLevelSelected
                   }`}
                   onClick={(e) => {
                     e.preventDefault();
-                    setLevel(btn.level);
+                    // setLevel(btn.level);
+                    wordLevelDispatch({ word: word.word, level: btn.level });
                   }}
                 >
                   <h3>{btn.icon}</h3>
@@ -83,11 +87,12 @@ const Component = ({ word }) => {
               variant={'like'}
               onClick={(e) => {
                 e.preventDefault();
-                setLike(!like);
+                // setLike(!like);
+                wordLikeDispatch(word.word);
               }}
             >
               <h2 className={styles.wDataLikeIcon}>
-                {!like ? <BsHeart /> : <BsHeartFill />}
+                {!word.like ? <BsHeart /> : <BsHeartFill />}
               </h2>
             </Button>
           </div>
@@ -99,9 +104,18 @@ const Component = ({ word }) => {
 
 Component.propTypes = {
   word: PropTypes.string,
+  wordLikeDispatch: PropTypes.func,
+  wordLevelDispatch: PropTypes.func,
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  wordLikeDispatch: (word) => dispatch(caWordLike(word)),
+  wordLevelDispatch: (data) => dispatch(caWordLevel(data)),
+});
+
+const Container = connect(null, mapDispatchToProps)(Component);
+
 export {
-  Component as Word,
+  Container as Word,
   Component as WordComponent,
 };

@@ -17,6 +17,7 @@ const FETCH_ERROR = caName('FETCH_ERROR');
 const WORD_ADD = caName('WORD_ADD');
 const WORD_LIKE = caName('WORD_LIKE');
 const WORD_UNLIKE = caName('WORD_UNLIKE');
+const WORD_LEVEL = caName('WORD_LEVEL');
 
 // --- A C T I O N   C R E A T O R S --- //
 export const caFetchStarted = (payload) => ({ payload, type: FETCH_START });
@@ -25,6 +26,8 @@ export const caFetchError = (payload) => ({ payload, type: FETCH_ERROR });
 export const caWordLike = (payload) => ({ payload, type: WORD_LIKE });
 export const caWordUnlike = (payload) => ({ payload, type: WORD_UNLIKE });
 export const caWordAdd = (payload) => ({ payload, type: WORD_ADD });
+export const caWordLevel = (payload) => ({ payload, type: WORD_LEVEL });
+
 
 // --- T H U N K   C R E A T O R S --- //
 export const caFetchWords = (words, refetch, activeFetch) => {
@@ -118,10 +121,11 @@ export const reducer = (statePart = [], action = {}) => {
       };
     }
     case WORD_LIKE: {
+      console.log('REDUX LIKE');
       return {
         ...statePart,
         data: statePart.data.map((word) =>
-          word._id === action.payload ? { ...word, like: true } : word
+          word.word === action.payload ? { ...word, like: true } : word
         ),
       };
     }
@@ -129,7 +133,18 @@ export const reducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         data: statePart.data.map((word) =>
-          word._id === action.payload ? { ...word, like: false } : word
+          word.word === action.payload ? { ...word, like: false } : word
+        ),
+      };
+    }
+    case WORD_LEVEL: {
+      console.log('REDUX LEVEL');
+      return {
+        ...statePart,
+        data: statePart.data.map((word) =>
+          word.word === action.payload.word
+            ? { ...word, level: action.payload.level }
+            : word
         ),
       };
     }

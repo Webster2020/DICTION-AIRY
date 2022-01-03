@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { getUserData, caUser, getLoginStatus} from '../../../redux/userRedux.js';
+import { 
+  getUserData, 
+  // caUser, 
+  caLoginDB, 
+  getLoginStatus,
+} from '../../../redux/userRedux.js';
 
 import styles from './LoginForm.module.scss';
 
@@ -11,7 +16,12 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../common/Button/Button';
 import { Input } from '../../common/Input/Input';
 
-const Component = ({ user, login, userDispatch }) => {
+const Component = ({ 
+  user, 
+  login, 
+  // userDispatch,
+  userLoginDispatch,
+}) => {
 
   const [values, setValues] = useState({
     login: '',
@@ -39,11 +49,12 @@ const Component = ({ user, login, userDispatch }) => {
     e.preventDefault();
     console.log('LOGIN: ' + values.login);
     console.log('PASSWORD: ' + values.password);
-    userDispatch(values);
-    setValues({
-      login: '',
-      password: '',
-    });
+    userLoginDispatch(values);
+    // userDispatch(values);
+    // setValues({
+    //   login: '',
+    //   password: '',
+    // });
     // setLogin(true); //if login in backend is true (TODO!!)
   };
 
@@ -94,7 +105,8 @@ Component.propTypes = {
   user: PropTypes.object,
   login: PropTypes.bool,
   wordAddDispatch: PropTypes.func,
-  userDispatch: PropTypes.func,
+  // userDispatch: PropTypes.func,
+  userLoginDispatch: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -103,11 +115,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  userDispatch: (data) => dispatch(caUser(data)),
+  userLoginDispatch: (data) => dispatch(caLoginDB(data)),
+  // userDispatch: (data) => dispatch(caUser(data)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 
 export {
   Container as LoginForm,

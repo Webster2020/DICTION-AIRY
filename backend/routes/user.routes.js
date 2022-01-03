@@ -7,7 +7,7 @@ router.get('/all', async (req, res) => {
   try {
     const result = await User
       .find()
-      .select('name password')
+      .select('login password')
       .sort({login: -1});
     if(!result) res.status(404).json({ user: 'Not found' });
     else {

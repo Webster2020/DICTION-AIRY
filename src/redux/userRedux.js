@@ -21,7 +21,7 @@ export const caUser = (payload) => ({ payload, type: USER });
 export const caLoginDB = (user) => {
   return (dispatch, getState) => {
     axios
-      .post(`http://dictionairy.webster2020.usermd.net/users/login`, user)
+      .post(`http://dictionairy.webster2020.usermd.net/api/users/login`, user)
       // .post(`http://localhost:8000/users/login`, user)
       .then((res) => {
         console.log('redux login OK');

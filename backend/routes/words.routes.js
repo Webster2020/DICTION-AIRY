@@ -20,6 +20,7 @@ router.get('/words', async (req, res) => {
 router.post('/word', async (req, res) => {
   try {
     const { 
+      user,
       word,
       translation,
       sentence,
@@ -30,7 +31,8 @@ router.post('/word', async (req, res) => {
       level,
       like,
     } = req.body;
-    const newWord = new Word({ 
+    const newWord = new Word({
+      user: user, 
       word: word,
       translation: translation,
       sentence: sentence,

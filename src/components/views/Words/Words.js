@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAll, getAllByUser } from '../../../redux/wordsRedux.js';
 
+import { Filters } from '../../features/Filters/Filters';
 import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
 import { Word } from '../../features/Word/Word';
 import { WordsList } from '../../features/WordsList/WordsList';
@@ -18,6 +19,7 @@ const Component = ({ words, wordsByUser }) => {
 
   return (
     <MainWrapper>
+      <Filters />
       <WordsList>
         {words.map((word, index) => (
           <Word key={index} word={word} />

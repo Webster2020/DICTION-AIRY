@@ -1,0 +1,48 @@
+@import '../../../styles/global.scss';
+
+.f {
+  position: fixed;
+  display: block;
+  padding: $base-size * 4 $base-size $base-size;
+  height: 480px;
+  width: 260px;
+  top: 330px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid $color-dark;
+  border-radius: $radius * 2;
+  background-color: $color-dark;
+  color: $color-light;
+  z-index: 100;
+}
+
+.fx {
+  font-size: $base-size * 3;
+}
+
+@media (min-width: 576px) {
+  .f {
+    top: 320px;
+  }
+}
+
+@media (min-width: 768px) {
+  .f {
+    width: 400px;
+    top: 350px;
+  }
+}
+
+@media (min-width: 992px) {
+  .f {
+    width: 500px;
+    top: 380px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .f {
+    width: 600px;
+    top: 410px;
+  }
+}

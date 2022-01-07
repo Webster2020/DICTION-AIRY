@@ -5,6 +5,8 @@ export const getAll = ({ words }) => words.data;
 export const getAllByUser = ({ words, user }) =>
   words.data.filter((word) => word.user === user.data);
 export const getLiked = ({ words }) => words.data.filter((word) => word.like);
+export const getTagsA = ({ words }) => words.data.map((word) => word.tagA);
+export const getTagsB = ({ words }) => words.data.map((word) => word.tagB);
 export const getFetchStatus = ({ words }) => words.loading.active;
 
 // --- A C T I O N   N A M E   C R E A T O R --- //

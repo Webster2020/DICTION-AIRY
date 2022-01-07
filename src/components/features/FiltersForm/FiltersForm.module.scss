@@ -1,0 +1,51 @@
+@import '../../../styles/global.scss';
+
+.ff {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: $base-size 0 0;
+  padding: 0;
+  border-top: 3px solid $color-dark;
+}
+
+.ffRowCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.ff100 {
+  width: 100%;
+}
+
+.ffRowRow {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  & * {
+    width: 30%;
+  }
+}
+
+.ffTitle {
+  position: absolute;
+  top: 26px;
+  left: 15px;
+  // border: 1px solid lightgreen;
+}
+
+@media (min-width: 768px) {
+  .ff {
+    margin: $base-size * 2 0;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ff {
+    margin: $base-size * 2 0;
+  }
+}

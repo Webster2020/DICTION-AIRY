@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { getAll, caWordAdd } from '../../../redux/wordsRedux.js';
+import { getAll, caAddWordToDB } from '../../../redux/wordsRedux.js';
 import { getUserData } from '../../../redux/userRedux.js';
 
 import styles from './TranslateForm.module.scss';
@@ -170,7 +170,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  wordAddDispatch: (data) => dispatch(caWordAdd(data)),
+  wordAddDispatch: (data) => dispatch(caAddWordToDB(data)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

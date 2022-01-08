@@ -67,11 +67,12 @@ export const caFetchWords = (words, refetch, activeFetch) => {
 export const caAddWordToDB = (newWord) => {
   return (dispatch, getState) => {
     axios
-      // .post(`http://dictionairy.webster2020.usermd.net/api/words/add`, newWord)
-      .post(`http://localhost:8000/api/words/add`, newWord)
+      .post(`http://dictionairy.webster2020.usermd.net/api/words/word`, newWord)
+      // .post(`http://localhost:8000/api/words/add`, newWord)
       .then((res) => {
         console.log(newWord);
         dispatch(caWordAdd(newWord));
+        console.log('ADD NEW WORD TO DB -> OK :)');
       })
       .catch((err) => {
         console.log(err);

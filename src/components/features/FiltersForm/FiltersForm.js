@@ -32,6 +32,7 @@ const Component = ({ user, close, tagsA, tagsB }) => {
     'numeral',
     'other',
   ];
+  
   const languages = ['ALL', 'pl', 'eng', 'de'];
   const levels = ['ALL', 0, 1, 2];
   const tags = ['ALL', ...new Set([...tagsA, ...tagsB])];

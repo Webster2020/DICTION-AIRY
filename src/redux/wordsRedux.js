@@ -30,37 +30,20 @@ export const caWordUnlike = (payload) => ({ payload, type: WORD_UNLIKE });
 export const caWordAdd = (payload) => ({ payload, type: WORD_ADD });
 export const caWordLevel = (payload) => ({ payload, type: WORD_LEVEL });
 
-
 // --- T H U N K   C R E A T O R S --- //
-export const caFetchWords = (words, refetch, activeFetch) => {
+export const caFetchWords = () => {
   return (dispatch, getState) => {
     dispatch(caFetchStarted());
-    if (!refetch) {
-      if (words.length < 1 && !activeFetch) {
-        console.log('first fetch');
-        axios
-          // .get('http://dictionairy.webster2020.usermd.net/api/words/all')
-          .get('http://localhost:8000/api/words/all')
-          .then((res) => {
-            dispatch(caFetchSuccess(res.data));
-          })
-          .catch((err) => {
-            dispatch(caFetchError(err.message || true));
-          });
-      }
-    } else {
-      console.log('refetch');
-      axios
-        // .get('http://dictionairy.webster2020.usermd.net/api/words/all')
-        .get('http://localhost:8000/api/words/all')
-        .then((res) => {
-          console.log(res.data);
-          dispatch(caFetchSuccess(res.data));
-        })
-        .catch((err) => {
-          dispatch(caFetchError(err.message || true));
-        });
-    }
+    axios
+      .get('http://dictionairy.webster2020.usermd.net/api/words/words')
+      // .get('http://localhost:8000/api/words/all')
+      .then((res) => {
+        dispatch(caFetchSuccess(res.data));
+        console.log('FETCHING WORDS FROM DB -> OK :)');
+      })
+      .catch((err) => {
+        dispatch(caFetchError(err.message || true));
+      });
   };
 };
 

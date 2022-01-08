@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { 
   getUserData, 
-  // caUser, 
   caLoginDB, 
   getLoginStatus,
 } from '../../../redux/userRedux.js';
+
+import { caFetchWords } from '../../../redux/wordsRedux.js';
 
 import styles from './LoginForm.module.scss';
 
@@ -19,8 +20,8 @@ import { Input } from '../../common/Input/Input';
 const Component = ({ 
   user, 
   login, 
-  // userDispatch,
   userLoginDispatch,
+  fetchWordsDispatch,
 }) => {
 
   const [values, setValues] = useState({
@@ -36,6 +37,8 @@ const Component = ({
     console.log(user);
     console.log('login: ' + login);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>>');
+    console.log('FETCHING...');
+    if(login) fetchWordsDispatch();
   });
 
   const handleChangeValue = (e, input) => {
@@ -50,12 +53,7 @@ const Component = ({
     console.log('LOGIN: ' + values.login);
     console.log('PASSWORD: ' + values.password);
     userLoginDispatch(values);
-    // userDispatch(values);
-    // setValues({
-    //   login: '',
-    //   password: '',
-    // });
-    // setLogin(true); //if login in backend is true (TODO!!)
+    // if(login) fetchWordsDispatch();
   };
 
   return (
@@ -104,9 +102,8 @@ const Component = ({
 Component.propTypes = {
   user: PropTypes.object,
   login: PropTypes.bool,
-  wordAddDispatch: PropTypes.func,
-  // userDispatch: PropTypes.func,
   userLoginDispatch: PropTypes.func,
+  fetchWordsDispatch: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -116,7 +113,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   userLoginDispatch: (data) => dispatch(caLoginDB(data)),
-  // userDispatch: (data) => dispatch(caUser(data)),
+  fetchWordsDispatch: () => dispatch(caFetchWords()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

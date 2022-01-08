@@ -7,7 +7,7 @@ router.get('/words', async (req, res) => {
   try {
     const result = await Word
       .find()
-      .select('word translation sentence type tagA tagB language level like')
+      .select('user word translation sentence type tagA tagB language level like')
       .sort({word: -1});
     if(!result) res.status(404).json({ word: 'Not found' });
     else res.json(result);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
 import { connect } from 'react-redux';
-import { caWordLike, caWordLevel } from '../../../redux/wordsRedux.js';
+import { caWordLike, caWordUnlike, caWordLevel } from '../../../redux/wordsRedux.js';
 
 import styles from './Word.module.scss';
 
@@ -11,7 +11,13 @@ import { Button } from '../../common/Button/Button';
 import { BiLike, BiDislike, BiInfoCircle } from 'react-icons/bi';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 
-const Component = ({ word, wordLikeDispatch, wordLevelDispatch }) => {
+const Component = ({ 
+  word, 
+  wordLikeDispatch, 
+  wordUnlikeDispatch, 
+  wordLevelDispatch, 
+}) => {
+  
   const buttonsData = [
     {
       icon: <BiDislike />,
@@ -34,21 +40,16 @@ const Component = ({ word, wordLikeDispatch, wordLevelDispatch }) => {
   ];
 
   const [visible, setVisible] = useState(false);
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // level will come from word.level (it will be changing by dispatch action during click on level buttons)
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // const [level, setLevel] = useState(0); //this line to remove in future
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // like will come from word.like (it will be changing by dispatch action during click on heart button)
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // const [like, setLike] = useState(false); //this line to remove in future
 
   return (
     <li className={styles.w}>
       <Button
         variant={'dictionary'}
         className={`${styles.wDictionary} ${buttonsData[word.level].style}`}
-        onClick={() => setVisible(!visible)}
+        onClick={(e) => {
+          e.preventDefault();
+          setVisible(!visible);
+        }}
       >
         <h2>{word.word}</h2>
       </Button>
@@ -73,7 +74,6 @@ const Component = ({ word, wordLikeDispatch, wordLevelDispatch }) => {
                   }`}
                   onClick={(e) => {
                     e.preventDefault();
-                    // setLevel(btn.level);
                     wordLevelDispatch({ word: word.word, level: btn.level });
                   }}
                 >
@@ -87,8 +87,7 @@ const Component = ({ word, wordLikeDispatch, wordLevelDispatch }) => {
               variant={'like'}
               onClick={(e) => {
                 e.preventDefault();
-                // setLike(!like);
-                wordLikeDispatch(word.word);
+                word.like ? wordUnlikeDispatch(word.word) : wordLikeDispatch(word.word);
               }}
             >
               <h2 className={styles.wDataLikeIcon}>
@@ -105,11 +104,13 @@ const Component = ({ word, wordLikeDispatch, wordLevelDispatch }) => {
 Component.propTypes = {
   word: PropTypes.string,
   wordLikeDispatch: PropTypes.func,
+  wordUnlikeDispatch: PropTypes.func,
   wordLevelDispatch: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   wordLikeDispatch: (word) => dispatch(caWordLike(word)),
+  wordUnlikeDispatch: (word) => dispatch(caWordUnlike(word)),
   wordLevelDispatch: (data) => dispatch(caWordLevel(data)),
 });
 

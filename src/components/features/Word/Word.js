@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
 import { connect } from 'react-redux';
-import { caWordLike, caWordUnlike, caWordLevel } from '../../../redux/wordsRedux.js';
+import { caWordLike, caWordUnlike, caWordLevel, caEditWordToDB } from '../../../redux/wordsRedux.js';
 
 import styles from './Word.module.scss';
 
@@ -16,8 +16,9 @@ const Component = ({
   wordLikeDispatch, 
   wordUnlikeDispatch, 
   wordLevelDispatch, 
+  wordEditDispatch,
 }) => {
-  
+
   const buttonsData = [
     {
       icon: <BiDislike />,
@@ -52,6 +53,7 @@ const Component = ({
         }}
       >
         <h2>{word.word}</h2>
+        <h2>{word._id}</h2>
       </Button>
       {word.like && (
         <div className={styles.wHeart}>
@@ -88,6 +90,7 @@ const Component = ({
               onClick={(e) => {
                 e.preventDefault();
                 word.like ? wordUnlikeDispatch(word.word) : wordLikeDispatch(word.word);
+                wordEditDispatch(word._id, {level: word.level, like: true});
               }}
             >
               <h2 className={styles.wDataLikeIcon}>
@@ -106,12 +109,14 @@ Component.propTypes = {
   wordLikeDispatch: PropTypes.func,
   wordUnlikeDispatch: PropTypes.func,
   wordLevelDispatch: PropTypes.func,
+  wordEditDispatch: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   wordLikeDispatch: (word) => dispatch(caWordLike(word)),
   wordUnlikeDispatch: (word) => dispatch(caWordUnlike(word)),
   wordLevelDispatch: (data) => dispatch(caWordLevel(data)),
+  wordEditDispatch: (word) => dispatch(caEditWordToDB(word)),
 });
 
 const Container = connect(null, mapDispatchToProps)(Component);

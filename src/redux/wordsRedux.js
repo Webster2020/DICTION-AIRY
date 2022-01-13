@@ -17,6 +17,7 @@ const FETCH_START = caName('FETCH_START');
 const FETCH_SUCCESS = caName('FETCH_SUCCESS');
 const FETCH_ERROR = caName('FETCH_ERROR');
 const WORD_ADD = caName('WORD_ADD');
+const WORD_EDIT = caName('WORD_EDIT');
 const WORD_LIKE = caName('WORD_LIKE');
 const WORD_UNLIKE = caName('WORD_UNLIKE');
 const WORD_LEVEL = caName('WORD_LEVEL');
@@ -25,9 +26,10 @@ const WORD_LEVEL = caName('WORD_LEVEL');
 export const caFetchStarted = (payload) => ({ payload, type: FETCH_START });
 export const caFetchSuccess = (payload) => ({ payload, type: FETCH_SUCCESS });
 export const caFetchError = (payload) => ({ payload, type: FETCH_ERROR });
+export const caWordAdd = (payload) => ({ payload, type: WORD_ADD });
+export const caWordEdit = (payload) => ({ payload, type: WORD_EDIT });
 export const caWordLike = (payload) => ({ payload, type: WORD_LIKE });
 export const caWordUnlike = (payload) => ({ payload, type: WORD_UNLIKE });
-export const caWordAdd = (payload) => ({ payload, type: WORD_ADD });
 export const caWordLevel = (payload) => ({ payload, type: WORD_LEVEL });
 
 // --- T H U N K   C R E A T O R S --- //
@@ -58,6 +60,23 @@ export const caAddWordToDB = (newWord) => {
         console.log('ADD NEW WORD TO DB -> OK :)');
       })
       .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const caEditWordToDB = (id, editedWord) => {
+  return (dispatch, getState) => {
+
+    axios
+      .put(`http://dictionairy.webster2020.usermd.net/api/words/word/${id}`, editedWord)
+      // .put(`http://localhost:8000/api/posts/${id}`, editedPost)
+      .then(res => {
+        console.log(res.data);
+        // dispatch(caWordEdit(editedWord));
+        console.log(`EDIT WORD ${editedWord.word} TO DB -> OK :)`);
+      })
+      .catch(err => {
         console.log(err);
       });
   };

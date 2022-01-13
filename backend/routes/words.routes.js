@@ -52,34 +52,21 @@ router.post('/word', async (req, res) => {
   }
 });
 
-router.put('/word/:word', async (req, res) => {
+router.put('/word/:id', async (req, res) => {
   const { 
-    word,
-    translation,
-    sentence,
-    type,
-    tagA,
-    tagB,
-    language,
     level,
     like,
   } = req.body;
   try {
-    const word = await Word.findById(req.params.word);
+    const word = await Word.findById(req.params.id);
+    // const word = await Word.findOne({word: req.params.word});
     if(word) {
       await Word.updateOne(
         {
-          word: req.params.word 
+          _id: req.params.id 
         }, 
         { 
           $set: { 
-            word: word,
-            translation: translation,
-            sentence: sentence,
-            type: type,
-            tagA: tagA,
-            tagB: tagB,
-            language: language,
             level: level,
             like: like,
           }

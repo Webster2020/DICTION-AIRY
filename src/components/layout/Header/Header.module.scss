@@ -16,6 +16,15 @@
   opacity: 0.8;
 }
 
+.headerUser {
+  margin-top: $base-size * 2;
+  text-align: center;
+  font-family: $font-brand;
+  font-size: $base-size * 3;
+  color: $color-white;
+  opacity: 0.8;
+}
+
 @media (min-width: 1200px) {
   .headerText {
     font-size: $base-size * 25;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
@@ -13,10 +13,6 @@ import { WordsList } from '../../features/WordsList/WordsList';
 
 
 const Component = ({ user, words }) => {
-  useEffect(() => {
-    console.log('WORDS BY USER:');
-  });
-
   return (
     <MainWrapper>
       <Filters />

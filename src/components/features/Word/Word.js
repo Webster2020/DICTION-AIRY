@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
@@ -12,12 +12,21 @@ import { BiLike, BiDislike, BiInfoCircle } from 'react-icons/bi';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 
 const Component = ({ 
+  user,
   word, 
   wordLikeDispatch, 
   wordUnlikeDispatch, 
   wordLevelDispatch, 
   wordEditDispatch,
 }) => {
+
+  useEffect(() => {
+    console.log('WORD USE EFFECT ELEMENTS:');
+    console.log('USER: ' + user.login);
+    console.log('WORD: ');
+    console.log(word.user.login);  
+    console.log(word.user.login === user.login);
+  });
 
   const buttonsData = [
     {
@@ -44,75 +53,78 @@ const Component = ({
 
   return (
     <li className={styles.w}>
-      <Button
-        variant={'dictionary'}
-        className={`${styles.wDictionary} ${buttonsData[word.level].style}`}
-        onClick={(e) => {
-          e.preventDefault();
-          setVisible(!visible);
-        }}
-      >
-        <h2>{word.word}</h2>
-      </Button>
-      {word.like && (
-        <div className={styles.wHeart}>
-          <h2>
-            <BsHeartFill />
-          </h2>
-        </div>
-      )}
-      {visible && (
-        <div className={styles.wData}>
-          <h2 className={styles.wDataTrans}>{word.translation}</h2>
-          <h3 className={styles.wDataRest}>{word.sentence}</h3>
-          <div className={styles.wDataLevels}>
-            {buttonsData.map((btn) => (
-              <div className={styles.wDataLevel} key={shortid.generate()}>
-                <Button
-                  variant={'level'}
-                  className={`${buttonsData[btn.level].styleLevel} ${
-                    word.level === btn.level && styles.wDataLevelSelected
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    wordLevelDispatch({ word: word.word, level: btn.level });
-                    const data = {
-                      level: btn.level,
-                      like: word.like,
-                    };
-                    wordEditDispatch(word._id, data);
-                  }}
-                >
-                  <h3>{btn.icon}</h3>
-                </Button>
-              </div>
-            ))}
+      {word.user.login === user.login && <div>
+        <Button
+          variant={'dictionary'}
+          className={`${styles.wDictionary} ${buttonsData[word.level].style}`}
+          onClick={(e) => {
+            e.preventDefault();
+            setVisible(!visible);
+          }}
+        >
+          <h2>{word.word}</h2>
+        </Button>
+        {word.like && (
+          <div className={styles.wHeart}>
+            <h2>
+              <BsHeartFill />
+            </h2>
           </div>
-          <div className={styles.wDataLike}>
-            <Button
-              variant={'like'}
-              onClick={(e) => {
-                e.preventDefault();
-                word.like ? wordUnlikeDispatch(word.word) : wordLikeDispatch(word.word);
-                const data = {
-                  level: word.level,
-                  like: !word.like,
-                };
-                wordEditDispatch(word._id, data);
-              }}
-            >
-              <h2 className={styles.wDataLikeIcon}>
-                {!word.like ? <BsHeart /> : <BsHeartFill />}
-              </h2>
-            </Button>
+        )}
+        {visible && (
+          <div className={styles.wData}>
+            <h2 className={styles.wDataTrans}>{word.translation}</h2>
+            <h3 className={styles.wDataRest}>{word.sentence}</h3>
+            <div className={styles.wDataLevels}>
+              {buttonsData.map((btn) => (
+                <div className={styles.wDataLevel} key={shortid.generate()}>
+                  <Button
+                    variant={'level'}
+                    className={`${buttonsData[btn.level].styleLevel} ${
+                      word.level === btn.level && styles.wDataLevelSelected
+                    }`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      wordLevelDispatch({ word: word.word, level: btn.level });
+                      const data = {
+                        level: btn.level,
+                        like: word.like,
+                      };
+                      wordEditDispatch(word._id, data);
+                    }}
+                  >
+                    <h3>{btn.icon}</h3>
+                  </Button>
+                </div>
+              ))}
+            </div>
+            <div className={styles.wDataLike}>
+              <Button
+                variant={'like'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  word.like ? wordUnlikeDispatch(word.word) : wordLikeDispatch(word.word);
+                  const data = {
+                    level: word.level,
+                    like: !word.like,
+                  };
+                  wordEditDispatch(word._id, data);
+                }}
+              >
+                <h2 className={styles.wDataLikeIcon}>
+                  {!word.like ? <BsHeart /> : <BsHeartFill />}
+                </h2>
+              </Button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>}
     </li>
   );
 };
 
 Component.propTypes = {
+  user: PropTypes.object,
   word: PropTypes.string,
   wordLikeDispatch: PropTypes.func,
   wordUnlikeDispatch: PropTypes.func,

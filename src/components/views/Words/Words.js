@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
 import { connect } from 'react-redux';
-import { getAll, getAllByUser } from '../../../redux/wordsRedux.js';
+import { getUserData } from '../../../redux/userRedux.js';
+import { getAll } from '../../../redux/wordsRedux.js';
 
 import { Filters } from '../../features/Filters/Filters';
 import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
 import { Word } from '../../features/Word/Word';
 import { WordsList } from '../../features/WordsList/WordsList';
 
-// import styles from './Words.scss';
 
-const Component = ({ words, wordsByUser }) => {
+const Component = ({ user, words }) => {
   useEffect(() => {
     console.log('WORDS BY USER:');
-    console.log(wordsByUser);
   });
 
   return (
     <MainWrapper>
       <Filters />
       <WordsList>
-        {words.map((word, index) => (
-          <Word key={index} word={word} />
+        {words.map((word) => (
+          <Word key={shortid.generate()} word={word} user={user} />
         ))}
       </WordsList>
     </MainWrapper>
@@ -30,13 +30,13 @@ const Component = ({ words, wordsByUser }) => {
 };
 
 Component.propTypes = {
+  user: PropTypes.object,
   words: PropTypes.array,
-  wordsByUser: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
+  user: getUserData(state),
   words: getAll(state),
-  wordsByUser: getAllByUser(state),
 });
 
 const Container = connect(mapStateToProps)(Component);

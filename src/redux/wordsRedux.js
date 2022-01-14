@@ -2,8 +2,7 @@ import axios from 'axios';
 
 // --- S E L E C T O R S --- //
 export const getAll = ({ words }) => words.data;
-export const getAllByUser = ({ words, user }) =>
-  words.data.filter((word) => word.user === user.data);
+export const getAllByUser = ({ words }, user) => words.data.filter((word) => word.user.login === user.login);
 export const getLiked = ({ words }) => words.data.filter((word) => word.like);
 export const getTagsA = ({ words }) => words.data.map((word) => word.tagA);
 export const getTagsB = ({ words }) => words.data.map((word) => word.tagB);

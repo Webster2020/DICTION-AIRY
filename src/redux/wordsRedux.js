@@ -50,6 +50,7 @@ export const caFetchWords = () => {
 };
 
 export const caAddWordToDB = (newWord) => {
+  console.log(newWord);
   return (dispatch, getState) => {
     axios
       .post(`http://dictionairy.webster2020.usermd.net/api/words/word`, newWord)
@@ -66,6 +67,8 @@ export const caAddWordToDB = (newWord) => {
 };
 
 export const caEditWordToDB = (id, editedWord) => {
+  console.log(id);
+  console.log(editedWord);
   return (dispatch, getState) => {
 
     axios
@@ -73,8 +76,6 @@ export const caEditWordToDB = (id, editedWord) => {
       // .put(`http://localhost:8000/api/posts/${id}`, editedPost)
       .then(res => {
         console.log(res.data);
-        // dispatch(caWordEdit(editedWord));
-        console.log(`EDIT WORD ${editedWord.word} TO DB -> OK :)`);
       })
       .catch(err => {
         console.log(err);

@@ -53,7 +53,6 @@ const Component = ({
         }}
       >
         <h2>{word.word}</h2>
-        <h2>{word._id}</h2>
       </Button>
       {word.like && (
         <div className={styles.wHeart}>
@@ -77,6 +76,11 @@ const Component = ({
                   onClick={(e) => {
                     e.preventDefault();
                     wordLevelDispatch({ word: word.word, level: btn.level });
+                    const data = {
+                      level: btn.level,
+                      like: word.like,
+                    };
+                    wordEditDispatch(word._id, data);
                   }}
                 >
                   <h3>{btn.icon}</h3>
@@ -90,7 +94,11 @@ const Component = ({
               onClick={(e) => {
                 e.preventDefault();
                 word.like ? wordUnlikeDispatch(word.word) : wordLikeDispatch(word.word);
-                wordEditDispatch(word._id, {level: word.level, like: true});
+                const data = {
+                  level: word.level,
+                  like: !word.like,
+                };
+                wordEditDispatch(word._id, data);
               }}
             >
               <h2 className={styles.wDataLikeIcon}>
@@ -116,7 +124,7 @@ const mapDispatchToProps = (dispatch) => ({
   wordLikeDispatch: (word) => dispatch(caWordLike(word)),
   wordUnlikeDispatch: (word) => dispatch(caWordUnlike(word)),
   wordLevelDispatch: (data) => dispatch(caWordLevel(data)),
-  wordEditDispatch: (word) => dispatch(caEditWordToDB(word)),
+  wordEditDispatch: (word, data) => dispatch(caEditWordToDB(word, data)),
 });
 
 const Container = connect(null, mapDispatchToProps)(Component);

@@ -4,7 +4,7 @@ const wordSchema = new mongoose.Schema({
   user: { type: Object, required: true },
   word: { type: String, required: true },
   translation: { type: String, required: true }, 
-  sentence: { type: String, required: true },
+  sentence: { type: String },
   type: { type: String },
   tagA: { type: String },
   tagB: { type: String },

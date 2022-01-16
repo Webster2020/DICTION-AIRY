@@ -59,7 +59,6 @@ router.put('/word/:id', async (req, res) => {
   } = req.body;
   try {
     const word = await Word.findById(req.params.id);
-    // const word = await Word.findOne({word: req.params.word});
     if(word) {
       await Word.updateOne(
         {
@@ -81,11 +80,11 @@ router.put('/word/:id', async (req, res) => {
   }
 });
 
-router.delete('/word/:word', async (req, res) => {
+router.delete('/word/:id', async (req, res) => {
   try {
-    const word = await Word.findById(req.params.word);
+    const word = await Word.findById(req.params.id);
     if(word) {
-      await Word.deleteOne({ word: req.params.word });
+      await Word.deleteOne({ _id: req.params.id });
       res.json({ message: 'OK', deletedDocument: word });
     }
     else res.status(404).json({ message: 'Not found...' });

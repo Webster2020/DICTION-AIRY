@@ -88,6 +88,21 @@ export const caEditWordToDB = (id, editedWord) => {
   };
 };
 
+export const caDeleteWordFromDB = (id) => {
+  return (dispatch, getState) => {
+
+    axios
+      .delete(`http://dictionairy.webster2020.usermd.net/api/words/word/${id}`)
+      // .delete(`http://localhost:8000/api/posts/${id}`)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+
 // --- R E D U C E R --- //
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {

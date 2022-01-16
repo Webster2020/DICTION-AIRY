@@ -61,7 +61,7 @@ const Component = ({
   const [isRemoved, setIsRemoved] = useState(false);
 
   return (
-    <li className={styles.w}>
+    <li className={word.user.login === user.login ? styles.w : styles.wHide}>
       {word.user.login === user.login && !isRemoved && (
         <div>
           <Button

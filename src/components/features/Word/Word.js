@@ -72,7 +72,7 @@ const Component = ({
               setVisible(!visible);
             }}
           >
-            <h2>{word.word}</h2>
+            <h2>{word.word.toUpperCase()}</h2>
           </Button>
           {word.like && (
             <div className={styles.wHeart}>

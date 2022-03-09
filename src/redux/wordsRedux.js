@@ -1,13 +1,29 @@
 import axios from 'axios';
 
 // --- S E L E C T O R S --- //
-export const getAll = ({ words }) => words.data.sort((a, b) => {
+// export const getAll = ({ words }) => words.data.sort((a, b) => {
+//   let wordA = a.word.toUpperCase();
+//   let wordB = b.word.toUpperCase();
+//   if (wordA < wordB) {return -1;}
+//   if (wordA > wordB) {return 1;}
+//   return 0;
+// });
+
+export const getAll = ({ words, filters }) => words.data.filter((word) => {
+  if (filters.level === 'ALL') {
+    return true;
+  } else {
+    return word.level === filters.level;
+  }
+}).sort((a, b) => {
   let wordA = a.word.toUpperCase();
   let wordB = b.word.toUpperCase();
   if (wordA < wordB) {return -1;}
   if (wordA > wordB) {return 1;}
   return 0;
 });
+// words.data.filter((word) => word.level === filters.level);
+
 export const getAllByUser = ({ words }, user) => words.data.filter((word) => word.user.login === user.login);
 export const getLiked = ({ words }) => words.data.filter((word) => word.like);
 export const getTagsA = ({ words }) => words.data.map((word) => word.tagA);

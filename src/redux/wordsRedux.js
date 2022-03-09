@@ -10,10 +10,43 @@ import axios from 'axios';
 // });
 
 export const getAll = ({ words, filters }) => words.data.filter((word) => {
+  // for (const prop in filters) {
+  //   console.log(prop);
+  //   console.log(filters[prop]);
+  //   if (filters[prop] === 'ALL') {
+  //     return true;
+  //   } else {
+  //     return word[prop] === filters[prop];
+  //   }
+  // }
   if (filters.level === 'ALL') {
     return true;
   } else {
     return word.level === filters.level;
+  }
+}).filter((word) => {
+  if (filters.type === 'ALL') {
+    return true;
+  } else {
+    return word.type === filters.type;
+  }
+}).filter((word) => {
+  if (filters.tag === 'ALL') {
+    return true;
+  } else {
+    return word.tag === filters.tag;
+  }
+}).filter((word) => {
+  if (filters.like === 'ALL') {
+    return true;
+  } else {
+    return word.like === filters.like;
+  }
+}).filter((word) => {
+  if (filters.language === 'ALL') {
+    return true;
+  } else {
+    return word.language === filters.language;
   }
 }).sort((a, b) => {
   let wordA = a.word.toUpperCase();

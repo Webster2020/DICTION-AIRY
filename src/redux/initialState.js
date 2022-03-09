@@ -13,4 +13,11 @@ export const initialState = {
       error: false,
     },
   },
+  filters: {
+    type: 'ALL',
+    tag: 'ALL',
+    language: 'ALL',
+    level: 'ALL',
+    like: 'ALL',
+  },
 };

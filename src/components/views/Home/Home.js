@@ -24,7 +24,7 @@ const Component = ({userIsLogged}) => {
   return (
     <MainWrapper>
       <MainButtons>
-        <h1>{counter}</h1>
+        <h1 style={{ display: 'none' }}>{counter}</h1>
         {!userIsLogged &&
           <Button main='true' id={'tryfree'} variant='home'>
             <Link to={'/main'} id={'main'} style={{ textDecoration: 'none' }}>

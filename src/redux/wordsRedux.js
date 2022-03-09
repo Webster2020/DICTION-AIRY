@@ -13,6 +13,10 @@ export const getLiked = ({ words }) => words.data.filter((word) => word.like);
 export const getTagsA = ({ words }) => words.data.map((word) => word.tagA);
 export const getTagsB = ({ words }) => words.data.map((word) => word.tagB);
 export const getFetchStatus = ({ words }) => words.loading.active;
+export const getFilteredWord = ({ words }) => {
+  console.log('REDUX FILTERED WORDS:');
+  console.log(words);
+};
 
 // --- A C T I O N   N A M E   C R E A T O R --- //
 const caName = (name) => `app/word/${name}`;

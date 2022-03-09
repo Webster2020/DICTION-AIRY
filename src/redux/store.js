@@ -5,11 +5,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { initialState } from './initialState';
 import { reducer as userReducer } from './userRedux';
 import { reducer as wordsReducer } from './wordsRedux';
+import { reducer as filtersReducer } from './filtersRedux';
 
 // define reducers
 const reducers = {
   user: userReducer,
   words: wordsReducer,
+  filters: filtersReducer,
 };
 
 // add blank reducers for initial state properties without reducers

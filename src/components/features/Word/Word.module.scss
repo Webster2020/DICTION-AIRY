@@ -20,6 +20,7 @@
 }
 
 .wDictionary {
+  position: relative;
   border: 2px solid $color-dark;
 }
 
@@ -64,6 +65,19 @@
     line-height: 1;
   }
 
+}
+
+.wFlag {
+  position: absolute;
+  top: 25px;
+  left: 10px;
+  height: 40px;
+  width: 40px;
+  // border: 5px solid black;
+  .wFlagIcon {
+    height: 30px;
+    width: 30px;
+  }
 }
 
 .wDataX {

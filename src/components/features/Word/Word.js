@@ -14,6 +14,7 @@ import {
 import styles from './Word.module.scss';
 
 import { Button } from '../../common/Button/Button';
+
 import { BiLike, BiDislike, BiInfoCircle } from 'react-icons/bi';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { MdDelete } from 'react-icons/md';
@@ -72,6 +73,9 @@ const Component = ({
               setVisible(!visible);
             }}
           >
+            {word.language === 'eng' && <div className={styles.wFlag}>
+              <img className={styles.wFlagIcon} src='https://icon-library.com/images/united-kingdom-flag-icon/united-kingdom-flag-icon-8.jpg' />
+            </div>}
             <h2>{word.word.toUpperCase()}</h2>
           </Button>
           {word.like && (

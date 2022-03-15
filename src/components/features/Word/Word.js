@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
@@ -28,14 +28,6 @@ const Component = ({
   wordEditDispatch,
   wordDeleteDispatch,
 }) => {
-
-  useEffect(() => {
-    // console.log('WORD USE EFFECT ELEMENTS:');
-    // console.log('USER: ' + user.login);
-    // console.log('WORD: ');
-    // console.log(word.user.login);  
-    // console.log(word.user.login === user.login);
-  });
 
   const buttonsData = [
     {

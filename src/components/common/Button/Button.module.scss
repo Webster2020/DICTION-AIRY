@@ -74,7 +74,7 @@
   @extend .x;
   padding: $base-size * 0.7 $base-size * 0.7 $base-size * 0.5;
   top: 120px;
-  right: 20px;
+  right: calc(100% - 55px);
   font-size: $base-size * 2;
 }
 

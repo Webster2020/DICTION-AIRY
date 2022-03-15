@@ -5,16 +5,23 @@ import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { getUserData } from '../../../redux/userRedux.js';
 import { getTagsA, getTagsB } from '../../../redux/wordsRedux.js';
-import { getFilteredWord, caFilterWords } from '../../../redux/filtersRedux.js';
+import { caFilterWords } from '../../../redux/filtersRedux.js';
 
 import styles from './FiltersForm.module.scss';
 
 import { Button } from '../../common/Button/Button';
 import { Select } from '../../common/Select/Select';
 
-const Component = ({ user, close, tagsA, tagsB, filteredWords, wordsFilterDispatch }) => {
+const Component = ({ 
+  user, 
+  close, 
+  tagsA, 
+  tagsB, 
+  // filteredWords, 
+  wordsFilterDispatch,
+}) => {
   useEffect(() => {
-    console.log(filteredWords);
+    // console.log(filteredWords);
   });
 
   // const tempTags = [...new Set([...tagsA, ...tagsB])];
@@ -65,6 +72,7 @@ const Component = ({ user, close, tagsA, tagsB, filteredWords, wordsFilterDispat
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('FILTERED VALUES:');
     console.log(filteredValues);
     wordsFilterDispatch(filteredValues);
     close(false);
@@ -105,7 +113,7 @@ Component.propTypes = {
   user: PropTypes.object,
   tagsA: PropTypes.array,
   tagsB: PropTypes.array,
-  filteredWords: PropTypes.array,
+  // filteredWords: PropTypes.array,
   close: PropTypes.func,
   wordsFilterDispatch: PropTypes.func,
 };
@@ -114,7 +122,7 @@ const mapStateToProps = (state) => ({
   user: getUserData(state),
   tagsA: getTagsA(state),
   tagsB: getTagsB(state),
-  filteredWords: getFilteredWord(state),
+  // filteredWords: getFilteredWord(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

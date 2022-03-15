@@ -34,13 +34,15 @@ export const getAll = ({ words, filters }) => words.data.filter((word) => {
   if (filters.tag === 'ALL') {
     return true;
   } else {
-    return word.tag === filters.tag;
+    return word.tagA === filters.tag || word.tagB === filters.tag;
   }
 }).filter((word) => {
   if (filters.like === 'ALL') {
     return true;
-  } else {
-    return word.like === filters.like;
+  } else if (filters.like === 'YES' && word.like === true) {
+    return true;
+  } else if (filters.like === 'NO' && word.like === false) {
+    return true;
   }
 }).filter((word) => {
   if (filters.language === 'ALL') {
@@ -56,6 +58,7 @@ export const getAll = ({ words, filters }) => words.data.filter((word) => {
   return 0;
 });
 // words.data.filter((word) => word.level === filters.level);
+export const getSize = ({words, filters}) => getAll({words, filters}).length;
 
 export const getAllByUser = ({ words }, user) => words.data.filter((word) => word.user.login === user.login);
 export const getLiked = ({ words }) => words.data.filter((word) => word.like);

@@ -30,11 +30,11 @@ const Component = ({
 }) => {
 
   useEffect(() => {
-    console.log('WORD USE EFFECT ELEMENTS:');
-    console.log('USER: ' + user.login);
-    console.log('WORD: ');
-    console.log(word.user.login);  
-    console.log(word.user.login === user.login);
+    // console.log('WORD USE EFFECT ELEMENTS:');
+    // console.log('USER: ' + user.login);
+    // console.log('WORD: ');
+    // console.log(word.user.login);  
+    // console.log(word.user.login === user.login);
   });
 
   const buttonsData = [

@@ -1,13 +1,14 @@
 // --- S E L E C T O R S --- //
-export const getFilteredWord = ({ words, filters }) => {
-  console.log('REDUX FILTERED WORDS:');
-  console.log(filters.level);
-  // console.log(words.filter((word) => word.level === filters.level));
-  console.log(words.data.map((word) => word.level));
-  console.log(words.data.filter((word) => word.level === filters.level));
-  console.log(filters);
-  return words.data.filter((word) => word.level === filters.level);
-};
+export const getFilters = ({filters}) => filters;
+// export const getFilteredWord = ({ words, filters }) => {
+//   console.log('REDUX FILTERED WORDS:');
+//   console.log(filters.level);
+//   // console.log(words.filter((word) => word.level === filters.level));
+//   console.log(words.data.map((word) => word.level));
+//   console.log(words.data.filter((word) => word.level === filters.level));
+//   console.log(filters);
+//   return words.data.filter((word) => word.level === filters.level);
+// };
 
 // --- A C T I O N   N A M E   C R E A T O R --- //
 const caName = (name) => `app/filter/${name}`;

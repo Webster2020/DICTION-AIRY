@@ -11,17 +11,14 @@ import { Filters } from '../../features/Filters/Filters';
 import { MainWrapper } from '../../layout/MainWrapper/MainWrapper';
 import { Word } from '../../features/Word/Word';
 import { WordsList } from '../../features/WordsList/WordsList';
+import { Info } from '../../features/Info/Info.js';
 
 
 const Component = ({ user, words, wordsAmout, filters }) => {
   return (
     <MainWrapper>
       <Filters />
-      <h2>Words: {wordsAmout}</h2>
-      <h2>TYPE: {filters.type}</h2>
-      <h2>LEVEL: {filters.level}</h2>
-      <h2>LIKE: {filters.like}</h2>
-      <h2>TAG: {filters.tag}</h2>
+      <Info wordsAmount={wordsAmout} filters={filters}/>
       <WordsList>
         {words.map((word) => (
           <Word key={shortid.generate()} word={word} user={user} />

@@ -2,4 +2,19 @@
 
 .i {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.iRow:first-of-type {
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+.iRow {
+  margin: 5px 10px;
+  h2 {
+    span {
+      color: $color-dark;
+    }
+  }
 }

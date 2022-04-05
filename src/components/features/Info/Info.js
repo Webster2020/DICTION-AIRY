@@ -21,7 +21,9 @@ const Component = ({wordsAmount, filters}) => {
 
   return (
     <div className={styles.i}>
-      <h2>DUPA</h2>
+      <div className={styles.iRow}>
+        <h2>FILTERS</h2>
+      </div>
       <div className={styles.iRow}>
         <h2>{cont[0][0]}<span>{cont[0][1]}</span></h2>
       </div>

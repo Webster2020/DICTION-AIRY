@@ -68,6 +68,9 @@ const Component = ({
             {word.language === 'eng' && <div className={styles.wFlag}>
               <img className={styles.wFlagIcon} src='https://icon-library.com/images/united-kingdom-flag-icon/united-kingdom-flag-icon-8.jpg' />
             </div>}
+            {word.language === 'pl' && <div className={styles.wFlag}>
+              <img className={styles.wFlagIcon} src='https://cdn-icons-png.flaticon.com/512/3909/3909248.png' />
+            </div>}
             <h2>{word.word.toUpperCase()}</h2>
           </Button>
           {word.like && (

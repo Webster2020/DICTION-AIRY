@@ -13,6 +13,7 @@ const Component = ({wordsAmount, filters}) => {
 
   const cont = [
     ['WORDS: ', wordsAmount],
+    ['LANGUAGE: ', filters.language],
     ['LEVEL: ', filters.level],
     ['TYPE: ', filters.type],
     ['LIKE: ', filters.like],
@@ -28,7 +29,7 @@ const Component = ({wordsAmount, filters}) => {
         <h2>{cont[0][0]}<span>{cont[0][1]}</span></h2>
       </div>
       <div className={styles.iRow}>
-        <h2>{cont[1][0]}<span>{cont[1][1]}</span></h2>
+        <h2>{cont[1][0].substring(0, 4)}: <span>{cont[1][1].toUpperCase()}</span></h2>
       </div>
       <div className={styles.iRow}>
         <h2>{cont[2][0]}<span>{cont[2][1]}</span></h2>
@@ -38,6 +39,9 @@ const Component = ({wordsAmount, filters}) => {
       </div>
       <div className={styles.iRow}>
         <h2>{cont[4][0]}<span>{cont[4][1]}</span></h2>
+      </div>
+      <div className={styles.iRow}>
+        <h2>{cont[5][0]}<span>{cont[5][1]}</span></h2>
       </div>
     </div>
   );
